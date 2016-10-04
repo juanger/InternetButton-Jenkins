@@ -66,8 +66,9 @@ int setFailed(String command) {
     int newFailedCount = command.substring(0,commaIdx).toInt();
     int newUnstableCount = command.substring(commaIdx + 1).toInt();
     int newTotalErrors = (newFailedCount + newUnstableCount);
-    bool becameGreen = newTotalErrors > 0 && newTotalErrors == 0;
-    bool becameRed = (failedCount + unstableCount) < newTotalErrors;
+    int totalErrors = failedCount + unstableCount;
+    bool becameGreen = totalErrors > 0 && newTotalErrors == 0;
+    bool becameRed = totalErrors < newTotalErrors;
 
     failedCount = newFailedCount;
     unstableCount = newUnstableCount;
